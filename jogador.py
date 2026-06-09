@@ -27,6 +27,10 @@ class JogadorCautelosoStategy(JogadorStategy):
         return resultado
 
 
+class JogadorImpulsivoStategy(JogadorStategy):
+    def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
+        return True
+
 
 
 class Jogador:
