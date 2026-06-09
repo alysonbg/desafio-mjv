@@ -7,3 +7,7 @@ class Propriedade:
     @property
     def custo(self):
         return self._custo
+
+    @property
+    def aluguel(self):
+        return self._aluguel

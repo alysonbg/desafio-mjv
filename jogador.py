@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Protocol
+import random
 from propriedade import Propriedade
 
 
@@ -31,6 +32,15 @@ class JogadorImpulsivoStategy(JogadorStategy):
     def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
         return True
 
+
+class JogadorExigenteStategy(JogadorStategy):
+    def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
+        resultado = False
+
+        if propriedade.aluguel > 50:
+            resultado = True
+
+        return resultado
 
 
 class Jogador:
