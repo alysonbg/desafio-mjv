@@ -43,7 +43,9 @@ class JogadorExigenteStategy(JogadorStategy):
     def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
         resultado = False
 
-        if propriedade.aluguel > 50:
+        novo_saldo = jogador.saldo - propriedade.custo
+
+        if propriedade.aluguel > 50 and novo_saldo > 0:
             resultado = True
 
         return resultado
@@ -51,8 +53,12 @@ class JogadorExigenteStategy(JogadorStategy):
 
 class JogadorAleatorioStategy(JogadorStategy):
     def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
-        opcoes = [True, False]
-        return random.choice(opcoes)
+        novo_saldo = jogador.saldo - propriedade.custo
+
+        if novo_saldo > 0:
+            return random.choice([True, False])
+
+        return False
 
 
 class Jogador:
