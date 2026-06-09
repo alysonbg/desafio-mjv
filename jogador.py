@@ -43,6 +43,12 @@ class JogadorExigenteStategy(JogadorStategy):
         return resultado
 
 
+class JogadorAleatorioStategy(JogadorStategy):
+    def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
+        opcoes = [True, False]
+        return random.choice(opcoes)
+
+
 class Jogador:
     def __init__(self, estrategia: JogadorStategy) -> None:
         self._saldo = 300
