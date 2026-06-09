@@ -22,7 +22,7 @@ class JogadorCautelosoStategy(JogadorStategy):
 
         novo_saldo = jogador.saldo - propriedade.custo
 
-        if novo_saldo >= 80:
+        if novo_saldo >= 80 and novo_saldo > 0:
             resultado = True
             
         return resultado
@@ -30,7 +30,13 @@ class JogadorCautelosoStategy(JogadorStategy):
 
 class JogadorImpulsivoStategy(JogadorStategy):
     def run(self, propriedade: Propriedade, jogador: Avaliavel) -> bool:
-        return True
+        resultado = False
+        novo_saldo = jogador.saldo - propriedade.custo
+
+        if novo_saldo > 0:
+            resultado = True
+
+        return resultado
 
 
 class JogadorExigenteStategy(JogadorStategy):

@@ -26,12 +26,12 @@ def test_jogador_impulsivo_deve_comprar_com_saldo():
     assert jogador.deve_comprar(propriedade) is True
 
 
-def test_jogador_impulsivo_deve_comprar_sem_saldo():
+def test_jogador_impulsivo_nao_compra_sem_saldo():
     stategy = JogadorImpulsivoStategy()
     jogador = Jogador(stategy)
     propriedade = Propriedade(1000, 250)
 
-    assert jogador.deve_comprar(propriedade) is True
+    assert jogador.deve_comprar(propriedade) is False
 
 
 def test_jogador_exigente_deve_comprar_quando_aluguel_maior_que_50():
