@@ -11,3 +11,11 @@ class Propriedade:
     @property
     def aluguel(self):
         return self._aluguel
+
+    @property
+    def proprietario(self):
+        return self._proprietario
+        
+    @proprietario.setter
+    def proprietario(self, novo_proprietario):
+        self._proprietario = novo_proprietario

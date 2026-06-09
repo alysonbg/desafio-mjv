@@ -62,7 +62,8 @@ class JogadorAleatorioStategy(JogadorStategy):
 
 
 class Jogador:
-    def __init__(self, estrategia: JogadorStategy) -> None:
+    def __init__(self, nome: str, estrategia: JogadorStategy) -> None:
+        self.nome = nome
         self._saldo = 300
         self.posicao = 0
         self.estrategia = estrategia
