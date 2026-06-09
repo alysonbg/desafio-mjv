@@ -59,6 +59,12 @@ class Jogador:
     def saldo(self):
         return self._saldo
 
+    def incrementa_saldo(self, valor: int):
+        self._saldo += valor
+
+    def decrementa_saldo(self, valor: int):
+        self._saldo -= valor
+        
     def deve_comprar(self, propriedade: Propriedade) -> bool:
         return self.estrategia.run(propriedade, self)
         

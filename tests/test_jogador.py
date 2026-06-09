@@ -49,3 +49,19 @@ def test_jogador_exigente_nao_deve_comprar_quando_aluguel_menor_que_50():
 
     
     assert jogador.deve_comprar(propriedade) is False
+
+
+def test_aumenta_saldo_do_jogador():
+    stategy = JogadorCautelosoStategy()
+    jogador = Jogador(stategy)
+    jogador.incrementa_saldo(100)
+
+    assert jogador.saldo == 400
+
+
+def test_decrementa_saldo_do_jogador():
+    stategy = JogadorCautelosoStategy()
+    jogador = Jogador(stategy)
+    jogador.decrementa_saldo(100)
+
+    assert jogador.saldo == 200
