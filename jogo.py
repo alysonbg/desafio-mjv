@@ -4,10 +4,12 @@ class Jogo:
     def __init__(self):
         self.propriedades = []
         self.jogadores = []
+        self.todos_os_jogadores = []
         self.rodada_atual = 0
 
     def add_jogador(self, jogador):
         self.jogadores.append(jogador)
+        self.todos_os_jogadores.append(jogador)
 
     def add_propriedade(self, propriedade):
         self.propriedades.append(propriedade)
@@ -15,6 +17,7 @@ class Jogo:
     def inicializar_jogo(self):
         # Embaralha jogadores no começo da partida
         random.shuffle(self.jogadores)
+        self.todos_os_jogadores = list(self.jogadores)
         self.rodada_atual = 0
 
     def rolar_dado(self):
@@ -46,13 +49,13 @@ class Jogo:
                 # Verifica se completou uma volta
                 if jogador.posicao >= 20:
                     jogador.incrementa_saldo(100)
-                    jogador.posicao = jogador.posicao % 20
+                    jogador.posicao = jogador.posicao - 20
                 
                 propriedade = self.propriedades[jogador.posicao]
                 
                 if propriedade.proprietario is None:
                     # Verifica se pode e quer comprar
-                    if jogador.saldo >= propriedade.custo and jogador.deve_comprar(propriedade):
+                    if jogador.deve_comprar(propriedade):
                         jogador.decrementa_saldo(propriedade.custo)
                         propriedade.proprietario = jogador
                 elif propriedade.proprietario != jogador:
@@ -67,9 +70,9 @@ class Jogo:
             for jogador_removido in jogadores_para_remover:
                 self.remover_jogador(jogador_removido)
 
-        # Retorna a lista de jogadores ordenada por saldo.
+        # Retorna a lista de todos os jogadores que participaram da partida, ordenada por saldo.
         # Caso o jogo termine no timeout (rodada 1000) ou apenas com um vencedor.
-        # A ordem inicial da lista `self.jogadores` após o shuffle dita o desempate
+        # A ordem inicial da lista `self.todos_os_jogadores` após o shuffle dita o desempate
         # naturalmente com o sorted (stable sort do Python) para jogadores com o mesmo saldo.
-        vencedores = sorted(self.jogadores, key=lambda j: j.saldo, reverse=True)
+        vencedores = sorted(self.todos_os_jogadores, key=lambda j: j.saldo, reverse=True)
         return vencedores
